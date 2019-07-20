@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -70,7 +69,7 @@ class CardMaker extends Component {
             </FormControl>
           </form>
         </div>
-        <div style={{ marginBottom: 10 }}>
+        <div style={{ marginBottom: 20 }}>
           <form className={classes.root}>
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="font">Font</InputLabel>
@@ -87,11 +86,6 @@ class CardMaker extends Component {
               </Select>
             </FormControl>
           </form>
-        </div>
-        <div style={{ marginBottom: 20 }}>
-          <Button variant="contained" color="primary">
-            Generate
-          </Button>
         </div>
         <div>
           <Card backgroundColor={this.state.color} />
