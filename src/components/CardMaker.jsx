@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -27,73 +27,66 @@ const styles = theme => ({
   }
 });
 
-class CardMaker extends Component {
-  constructor(props) {
-    super(props);
+const CardMaker = props => {
+  const [color, setColor] = useState('bone');
+  const [font, setFont] = useState('silianRail');
 
-    this.state = {
-      color: 'bone',
-      font: 'selianGrail'
-    };
-  }
+  const { classes } = props;
 
-  colorOnChange = event => {
-    this.setState({ color: event.target.value });
+  const colorOnChange = event => {
+    setColor(event.target.value);
   };
 
-  render() {
-    const { classes } = this.props;
-    return (
+  return (
+    <div>
       <div>
-        <div>
-          <Typography variant="h3" gutterBottom>
-            American Psycho Business Card Maker
-          </Typography>
-        </div>
-        <div style={{ marginBottom: 10 }}>
-          <form className={classes.root}>
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="color">Color</InputLabel>
-              <Select
-                value={this.state.color}
-                inputProps={{
-                  name: 'color',
-                  id: 'background-color'
-                }}
-                onChange={this.colorOnChange}
-              >
-                <MenuItem value="bone">Bone</MenuItem>
-                <MenuItem value="eggShell">Egg Shell</MenuItem>
-                <MenuItem value="paleNimbus">Pale Nimbus</MenuItem>
-              </Select>
-            </FormControl>
-          </form>
-        </div>
-        <div style={{ marginBottom: 20 }}>
-          <form className={classes.root}>
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="font">Font</InputLabel>
-              <Select
-                value={1}
-                inputProps={{
-                  name: 'font',
-                  id: 'font'
-                }}
-              >
-                <MenuItem value={1}>Silian Grail</MenuItem>
-                <MenuItem value={2}>Roman</MenuItem>
-                <MenuItem value={3}>Raised Lettering</MenuItem>
-              </Select>
-            </FormControl>
-          </form>
-        </div>
-        <div>
-          <Card backgroundColor={this.state.color} />
-        </div>
+        <Typography variant="h3" gutterBottom>
+          American Psycho Business Card Maker
+        </Typography>
       </div>
-    );
-  }
-}
+      <div style={{ marginBottom: 10 }}>
+        <form className={classes.root}>
+          <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="color">Color</InputLabel>
+            <Select
+              value={color}
+              inputProps={{
+                name: 'color',
+                id: 'background-color'
+              }}
+              onChange={colorOnChange}
+            >
+              <MenuItem value="bone">Bone</MenuItem>
+              <MenuItem value="eggShell">Egg Shell</MenuItem>
+              <MenuItem value="paleNimbus">Pale Nimbus</MenuItem>
+            </Select>
+          </FormControl>
+        </form>
+      </div>
+      <div style={{ marginBottom: 20 }}>
+        <form className={classes.root}>
+          <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="font">Font</InputLabel>
+            <Select
+              value={1}
+              inputProps={{
+                name: 'font',
+                id: 'font'
+              }}
+            >
+              <MenuItem value={1}>Silian Rail</MenuItem>
+              <MenuItem value={2}>Romalian Type</MenuItem>
+              <MenuItem value={3}>Raised Lettering</MenuItem>
+            </Select>
+          </FormControl>
+        </form>
+      </div>
+      <div>
+        <Card backgroundColor={color} />
+      </div>
+    </div>
+  );
+};
 
 CardMaker.propTypes = {
   classes: PropTypes.object.isRequired
